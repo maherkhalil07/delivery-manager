@@ -40,6 +40,7 @@ class _ChartState extends State<Chart> {
   Widget build(BuildContext context) {
     filterOrders();
     return Card(
+      color: Theme.of(context).accentColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 5,
       margin: EdgeInsets.symmetric(

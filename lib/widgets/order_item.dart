@@ -9,7 +9,9 @@ class OrderItem extends StatelessWidget {
   OrderItem(this.order, this.remove);
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).accentColor == Colors.grey[600];
     return Card(
+      color: isDark? Theme.of(context).primaryColor : Theme.of(context).accentColor,
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       margin: EdgeInsets.symmetric(
@@ -20,7 +22,7 @@ class OrderItem extends StatelessWidget {
         child: ListTile(
           leading: CircleAvatar(
             radius: 30,
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: isDark? Colors.black: Theme.of(context).primaryColor,
             child: FittedBox(
               child: Padding(
                 padding: EdgeInsets.all(5.0),
@@ -31,8 +33,8 @@ class OrderItem extends StatelessWidget {
               ),
             ),
           ),
-          title: Text(order.deliveryMan),
-          subtitle: Text(DateFormat('hh:mm a').format(order.orderDate)),
+          title: Text(order.deliveryMan, style: TextStyle(color: isDark? Colors.white: Colors.black),),
+          subtitle: Text(DateFormat('hh:mm a').format(order.orderDate), style: TextStyle(color: isDark? Colors.white: Colors.black),),
           trailing: IconButton(
             icon: Icon(
               Icons.delete,

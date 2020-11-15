@@ -33,6 +33,7 @@ class _AddOrderSheetState extends State<AddOrderSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Theme.of(context).accentColor,
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: SingleChildScrollView(
