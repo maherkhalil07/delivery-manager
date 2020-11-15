@@ -1,4 +1,4 @@
-#Sat Nov 14 14:37:26 EET 2020
+#Mon Nov 16 00:07:56 EET 2020
 base.0=/mnt/education/mobile/route course/projects/delivery_manager/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

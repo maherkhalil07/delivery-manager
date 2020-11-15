@@ -24,7 +24,8 @@ class _HomeScreenState extends State<HomeScreen> {
   ScrollController scrollController;
   bool showUpButton = false;
   List<String> deliveryMen = ['Muhamed Aly', 'Toka Ehab', 'Ahmed Ali'];
-
+  DateTime selectedDate;
+  SplayTreeSet<Order> selectedOrders;
   int compareTwoOrders(Order a, Order b) {
     return -a.orderDate.compareTo(b.orderDate);
   }
@@ -80,12 +81,32 @@ class _HomeScreenState extends State<HomeScreen> {
       }
       orders[key]['list'].add(element);
     });
+
+    selectedDate = DateTime.now();
+    String key = DateFormat('yyyyMMdd').format(selectedDate);
+    if (orders.containsKey(key)) {
+      selectedOrders = orders[key]['list'];
+    } else {
+      selectedOrders = null;
+    }
   }
 
   @override
   void dispose() {
     scrollController.dispose();
     super.dispose();
+  }
+
+  void changeDate(DateTime date) {
+    setState(() {
+      selectedDate = date;
+      String key = DateFormat('yyyyMMdd').format(selectedDate);
+      if (orders.containsKey(key)) {
+        selectedOrders = orders[key]['list'];
+      }else {
+      selectedOrders = null;
+    }
+    });
   }
 
   @override
@@ -100,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 children: [
                   HomeScreenTitle(),
-                  Chart(),
+                  Chart(selectedDate, changeDate, selectedOrders),
                   Expanded(
                     child: NotificationListener<ScrollUpdateNotification>(
                       onNotification: (notification) {
